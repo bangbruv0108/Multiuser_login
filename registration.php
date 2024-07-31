@@ -2,13 +2,15 @@
  include 'connect.php';
 
  if($_SERVER["REQUEST_METHOD"]=="POST"){
-    date_default_timezone_set("Asia/Kolkata")
+    date_default_timezone_set("Asia/Kolkata");
     $uname=$_POST['uname'];
     $upwd=$_POST['upwd'];
     $role=$_POST['role'];
 
-    $sql="insert into users(uname,upwd,role,added_date) values('$uname','$upwd','$role','date('Y-m-d h:i:s')')";
-    $result=mysqli_query($con,$sql);
+    $sql="insert into users(uname,upwd,role,added_date) values('$uname','$upwd','$role',NOW())";
+    echo $sql;
+
+    $result=mysqli_query($conn,$sql);
     if($result){
         echo "record added !!";
     }else{
@@ -29,7 +31,7 @@
 
 <div class="container mt-3">
   <h2>Registration Form </h2>
-  <form method="POST" action="<?php echo $_SERVER["PHP_SELF"];?>">
+  <form method="POST" action="registration.php">
     <div class="mb-3 mt-3">
       <label for="username">UserName:</label>
       <input type="text" class="form-control" id="email" placeholder="Enter Username" name="uname">
