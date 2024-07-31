@@ -8,8 +8,6 @@
     $role=$_POST['role'];
 
     $sql="insert into users(uname,upwd,role,added_date) values('$uname','$upwd','$role',NOW())";
-    echo $sql;
-
     $result=mysqli_query($conn,$sql);
     if($result){
         echo "record added !!";
